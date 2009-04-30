@@ -7,6 +7,12 @@ fi
 export ACK_COLOR_FILENAME="red on_white"
 export ACK_COLOR_FILENAME="red on_white"
 export LESSHISTFILE=- # Name of the history file used to remember search commands and shell commands between invocations of less. If set to "-" a history file is not used.
+export EDITOR='vi'
+export VISUAL='vi'
+
+LC_ALL='en_US.UTF-8'
+LANG='en_US.UTF-8'
+LC_CTYPE=C
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
