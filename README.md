@@ -1,6 +1,6 @@
     <.ssh/*.pub[TAB]
     
-    [Account](https://github.com/account/)
+[Account](https://github.com/account/)
     
     git clone git@github.com:dolzenko/dotfiles.git dotfiles_clone_tmp
     
