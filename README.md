@@ -6,7 +6,7 @@
     
     mv dotfiles_clone_tmp/.git/ $HOME/dotfiles.git
      
-    cp -v -b -r dotfiles_clone_tmp/.* $HOME
+    cp -v -b -r dotfiles_clone_tmp/.* $HOME  # carefull with BSD as it can't make backups
 
     cp -v -b -r dotfiles_clone_tmp/* $HOME 
     
