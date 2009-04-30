@@ -223,3 +223,6 @@ function precmd() {
 function preexec() {
   title "$1" "$USER@%m" "%35<...<%~"
 }
+
+# Git dotfiles
+alias git_dotfiles='git --git-dir=$HOME/dotfiles.git --work-tree=$HOME'
