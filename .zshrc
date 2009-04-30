@@ -226,3 +226,4 @@ function preexec() {
 
 # Git dotfiles
 alias git_dotfiles='git --git-dir=$HOME/dotfiles.git --work-tree=$HOME'
+alias git_dotfiles_push='git --git-dir=$HOME/dotfiles.git --work-tree=$HOME commit -a && git --git-dir=$HOME/dotfiles.git --work-tree=$HOME push'
