@@ -1,0 +1,5 @@
+mkdir -p $HOME/tmp
+rm -rf $HOME/tmp/dotfiles_check.tmp
+eval $GIT_DOTFILES fetch -v > $HOME/tmp/dotfiles_check.tmp 2>&1
+eval $GIT_DOTFILES log HEAD..origin >> $HOME/tmp/dotfiles_check.tmp 2>&1
+cat $HOME/tmp/dotfiles_check.tmp
