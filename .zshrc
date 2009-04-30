@@ -23,6 +23,7 @@ setopt EXTENDED_GLOB # If the EXTENDED_GLOB option is set, the `^' and `#' chara
 setopt NO_HIST_IGNORE_DUPS # Do  enter command lines into the history list even if they are duplicates of the previous event. (needed for EXTENDED_HISTORY)
 setopt EXTENDED_HISTORY # Save each command's beginning timestamp (in seconds since the epoch) and the duration (in seconds) to the history file. 
 setopt COMPLETE_IN_WORD # If unset, the cursor is set to the end of the word if completion is started. Otherwise it stays there and completion is done from both ends.
+setopt extended_glob # dot files in globs and other
 
 bindkey -e # Selects keymap `emacs'
 # bindkey -m # meta sends escape
@@ -228,4 +229,7 @@ function preexec() {
 export GIT_DOTFILES='git --git-dir=$HOME/dotfiles.git --work-tree=$HOME'
 alias git_dotfiles=$GIT_DOTFILES
 alias git_dotfiles_push='git --git-dir=$HOME/dotfiles.git --work-tree=$HOME commit -a && git --git-dir=$HOME/dotfiles.git --work-tree=$HOME push'
-zsh bin/git_dotfiles_check &
+zsh ${ZDOTDIR:-$HOME}/bin/git_dotfiles_check &
+
+# Machine specific .zshrc
+[[ -f ${ZDOTDIR:-$HOME}/.machine.zshrc ]] && source ${ZDOTDIR:-$HOME}/.machine.zshrc
