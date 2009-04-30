@@ -142,11 +142,11 @@ zstyle ':completion:history-words:*' remove-all-dups yes
 ZDOTDIR_OR_HOME=${ZDOTDIR:-$HOME}
 
 
-source ${ZDOTDIR:-$HOME}/.myloc
+source ${ZDOTDIR:-$HOME}/.machine.myloc
 addloc()
 {
-	echo "$1=`pwd`\n" >> ~/.myloc
-	source ~/.myloc
+	echo "$1=`pwd`\n" >> ~/.machine.myloc
+	source ~/.machine.myloc
 }
 
 
