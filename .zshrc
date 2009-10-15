@@ -20,8 +20,7 @@ SAVEHIST=10000
 setopt INC_APPEND_HISTORY # multiple shells append to history files, new history lines are added to the $HISTFILE incrementally (as soon as they are entered), rather than waiting until the shell is killed
 setopt AUTO_CD # cd to dir by entering only dir name
 setopt EXTENDED_GLOB # If the EXTENDED_GLOB option is set, the `^' and `#' characters also denote a pattern
-setopt NO_HIST_IGNORE_DUPS # Do  enter command lines into the history list even if they are duplicates of the previous event. (needed for EXTENDED_HISTORY)
-setopt EXTENDED_HISTORY # Save each command's beginning timestamp (in seconds since the epoch) and the duration (in seconds) to the history file. 
+setopt HIST_IGNORE_DUPS # Do not enter command lines into the history list if they are duplicates of the previous event
 setopt COMPLETE_IN_WORD # If unset, the cursor is set to the end of the word if completion is started. Otherwise it stays there and completion is done from both ends.
 setopt extended_glob # dot files in globs and other
 
