@@ -1,4 +1,6 @@
-    <.ssh/*.pub[TAB]
+    ssh-keygen
+
+    cat ~/.ssh/id_rsa.pub 
     
 [Account](https://github.com/account/)
     
