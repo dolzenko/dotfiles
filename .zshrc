@@ -53,13 +53,13 @@ alias ..='cd ..'
 alias a='cat ~/.zshrc | grep alias | sort'
 alias c='clear'
 alias cd..='cd ..'
-alias d='date'
+alias d="date '+%Y-%m-%d %H:%M'"
 alias df="df -h"
 alias du="du -h"
 alias f="find . -path '*.svn*' -prune -o -print | grep"
 alias gh='cat ~/.zsh_history | grep'
 alias j=jobs
-alias l='ls -lA'
+alias l='ls -lA --time-style=long-iso'
 alias lad='ls -d .*(/)'                # only show dot-directories
 alias lsa='ls -a .*(.)'                # only show dot-files
 alias lsbig="ls -flh *(.OL[1,10])"     # display the biggest files
