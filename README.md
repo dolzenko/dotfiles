@@ -1,3 +1,11 @@
+    sudo apt-get update
+
+    sudo apt-get dist-upgrade
+
+    sudo apt-get install git-core
+
+    sudo apt-get install zsh
+
     ssh-keygen
 
     cat ~/.ssh/id_rsa.pub 
@@ -11,6 +19,8 @@
     cp -v -b -r dotfiles_clone_tmp/.* $HOME  # carefull with BSD as it can't make backups
 
     cp -v -b -r dotfiles_clone_tmp/* $HOME 
+    
+    chsh -s /bin/zsh `whoami`
     
     ^D
     
