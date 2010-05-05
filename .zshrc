@@ -241,5 +241,36 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey '^Xe' edit-command-line
 
+# develop out of the current directory
+# courtesy rtomayko http://gist.github.com/361451#gistcomment-948
+rbdev() {
+    local useful dir
+    test -d ./bin && {
+        useful=yes
+        PATH="$(pwd)/bin:$PATH"
+        echo "./bin on \$PATH"
+    }
+    test -d ./ext && {
+        useful=yes
+        for dir in ./ext/*
+        do
+            test -d "$dir" || continue
+            RUBYLIB="$(pwd)/$dir:$RUBYLIB"
+            export RUBYLIB
+            echo "$dir on \$RUBYLIB"
+        done
+    }
+    test -d ./lib && {
+        useful=yes
+        RUBYLIB="$(pwd)/lib:$RUBYLIB"
+        export RUBYLIB
+        echo "./lib on \$RUBYLIB"
+    }
+    test -z "$useful" && {
+        echo "no ./lib or ./bin detected. help me help you."
+        return 1
+    }
+}
+
 # Machine specific .zshrc
 [[ -f ${ZDOTDIR:-$HOME}/.machine.zshrc ]] && source ${ZDOTDIR:-$HOME}/.machine.zshrc
