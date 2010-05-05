@@ -1,2 +1,3 @@
 set autoeval on
 set autolist on
+set history size 0

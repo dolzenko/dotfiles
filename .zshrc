@@ -85,6 +85,7 @@ alias h='fc -f -l -32 -1' # last 32 commands from history with timestamps
 alias chmodrd="find . -type d -exec chmod 755 {} \;"
 alias chmodrf="find . -type f -exec chmod 644 {} \;"
 alias x='extract'
+alias r='ruby -e'
 
 alias -g G='|grep'
 alias -g H='|head'
@@ -229,6 +230,16 @@ export GIT_DOTFILES='git --git-dir=$HOME/dotfiles.git --work-tree=$HOME'
 alias git_dotfiles=$GIT_DOTFILES
 alias git_dotfiles_push='git --git-dir=$HOME/dotfiles.git --work-tree=$HOME commit -a && git --git-dir=$HOME/dotfiles.git --work-tree=$HOME push'
 zsh ${ZDOTDIR:-$HOME}/bin/git_dotfiles_check &
+
+export RUBYOPT="-rubygems" 
+
+# trigger specific to my own setting behaviour in scripts and application
+export DOLZENKO=1
+
+# http://stackoverflow.com/questions/890620/unable-to-have-bash-like-c-x-e-in-zsh
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^Xe' edit-command-line
 
 # Machine specific .zshrc
 [[ -f ${ZDOTDIR:-$HOME}/.machine.zshrc ]] && source ${ZDOTDIR:-$HOME}/.machine.zshrc
