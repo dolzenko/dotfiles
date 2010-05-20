@@ -23,6 +23,7 @@ setopt EXTENDED_GLOB # If the EXTENDED_GLOB option is set, the `^' and `#' chara
 setopt HIST_IGNORE_DUPS # Do not enter command lines into the history list if they are duplicates of the previous event
 setopt COMPLETE_IN_WORD # If unset, the cursor is set to the end of the word if completion is started. Otherwise it stays there and completion is done from both ends.
 setopt extended_glob # dot files in globs and other
+setopt INTERACTIVE_COMMENTS # Allow comments even in interactive shells.
 
 bindkey -e # Selects keymap `emacs'
 # bindkey -m # meta sends escape
