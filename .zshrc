@@ -272,6 +272,17 @@ rbdev() {
         return 1
     }
 }
+# http://stevehodgkiss.com/blog/2010/01/27/speed-up-your-git-workflow-with-bash-aliases/
+alias gl='git pull'
+alias gp='git push'
+alias gpom='git push origin master'
+alias gd='git diff'
+alias gc='git commit'
+alias gca='git commit -a'
+alias gco='git checkout'
+alias gb='git branch'
+alias gs='git status'
+alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 
 # Machine specific .zshrc
 [[ -f ${ZDOTDIR:-$HOME}/.machine.zshrc ]] && source ${ZDOTDIR:-$HOME}/.machine.zshrc
