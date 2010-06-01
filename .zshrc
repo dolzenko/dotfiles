@@ -87,6 +87,7 @@ alias chmodrd="find . -type d -exec chmod 755 {} \;"
 alias chmodrf="find . -type f -exec chmod 644 {} \;"
 alias x='extract'
 alias r='ruby -e'
+alias i='irb'
 
 alias -g G='|grep'
 alias -g H='|head'
