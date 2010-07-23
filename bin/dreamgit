@@ -12,4 +12,11 @@ echo "
 [branch \"master\"]
   remote = origin
   merge = refs/heads/master" >>.git/config
+
+ln -s /home/dolzenko/git/$1.git /home/dolzenko/dolzhenko.org/$1.git
+git update-server-info   
+
+cp hooks/post-update.sample hooks/post-update
+
 echo "Your new git repo '$1' is ready and initialized at ssh://$DREAMGIT_DOMAIN/~/git/$1.git"
+echo "Also available as http://dolzhenko.org/$1.git"
