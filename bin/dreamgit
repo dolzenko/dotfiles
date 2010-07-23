@@ -1,0 +1,15 @@
+# http://casperfabricius.com/site/2008/09/21/keeping-git-repositories-on-dreamhost-using-ssh/
+ssh $DREAMGIT_DOMAIN 'mkdir -p ~/git/'$1'.git && cd ~/git/'$1'.git && git --bare init'
+mkdir $1
+cd $1
+git init
+git remote add origin ssh://$DREAMGIT_DOMAIN/~/git/$1.git
+touch .gitignore
+git add .
+git commit -m 'Created new repo'
+git push origin master
+echo "
+[branch \"master\"]
+  remote = origin
+  merge = refs/heads/master" >>.git/config
+echo "Your new git repo '$1' is ready and initialized at ssh://$DREAMGIT_DOMAIN/~/git/$1.git"
