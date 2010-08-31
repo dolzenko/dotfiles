@@ -3,3 +3,7 @@
 	email = dolzenko@gmail.com
 [github]
 	user = dolzenko
+[color]
+	diff = auto
+	status = auto
+	branch = auto
