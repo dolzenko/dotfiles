@@ -286,5 +286,9 @@ alias gs='git status'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gai="git add -i"
 
+# http://brett.benders.net/2008/07/25/zsh-wordchars/
+# At the shell prompt, I want to directories in a path to act like words, so that I can kill them one by one.
+WORDCHARS="${WORDCHARS:s#/#}" # takes the value of WORDCHARS, removes slash, and assigns back to WORDCHARS
+
 # Machine specific .zshrc
 [[ -f ${ZDOTDIR:-$HOME}/.machine.zshrc ]] && source ${ZDOTDIR:-$HOME}/.machine.zshrc
