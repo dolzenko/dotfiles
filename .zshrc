@@ -20,7 +20,7 @@ SAVEHIST=10000
 setopt INC_APPEND_HISTORY # multiple shells append to history files, new history lines are added to the $HISTFILE incrementally (as soon as they are entered), rather than waiting until the shell is killed
 setopt AUTO_CD # cd to dir by entering only dir name
 setopt EXTENDED_GLOB # If the EXTENDED_GLOB option is set, the `^' and `#' characters also denote a pattern
-setopt HIST_IGNORE_DUPS # Do not enter command lines into the history list if they are duplicates of the previous event
+setopt NO_HIST_IGNORE_DUPS # Do not enter command lines into the history list if they are duplicates of the previous event
 setopt COMPLETE_IN_WORD # If unset, the cursor is set to the end of the word if completion is started. Otherwise it stays there and completion is done from both ends.
 setopt extended_glob # dot files in globs and other
 setopt INTERACTIVE_COMMENTS # Allow comments even in interactive shells.
@@ -60,7 +60,7 @@ alias du="du -h"
 alias f="find . -path '*.svn*' -prune -o -print | grep"
 alias gh='cat ~/.zsh_history | grep'
 alias j=jobs
-alias l='ls -lA --time-style=long-iso'
+alias l='LC_COLLATE=C ls --color -a -l -A --group-directories-first -F -h --time-style=long-iso'
 alias lad='ls -d .*(/)'                # only show dot-directories
 alias lsa='ls -a .*(.)'                # only show dot-files
 alias lsbig="ls -flh *(.OL[1,10])"     # display the biggest files
@@ -230,7 +230,8 @@ function preexec() {
 # Git dotfiles
 export GIT_DOTFILES='git --git-dir=$HOME/dotfiles.git --work-tree=$HOME'
 alias git_dotfiles=$GIT_DOTFILES
-alias git_dotfiles_push='git --git-dir=$HOME/dotfiles.git --work-tree=$HOME commit -a && git --git-dir=$HOME/dotfiles.git --work-tree=$HOME push'
+# alias git_dotfiles_push='git --git-dir=$HOME/dotfiles.git --work-tree=$HOME commit -a && git --git-dir=$HOME/dotfiles.git --work-tree=$HOME push'
+alias git_dotfiles_acp=git_dotfiles add -i && git_dotfiles commit -m "Minor" && git_dotfiles push
 zsh ${ZDOTDIR:-$HOME}/bin/git_dotfiles_check &
 
 export RUBYOPT="-rubygems" 
@@ -277,7 +278,7 @@ rbdev() {
 alias gl='git pull'
 alias gp='git push'
 alias gpom='git push origin master'
-alias gd='git diff'
+alias gd='git diff --ignore-space-change'
 alias gc='git commit'
 alias gca='git commit -a'
 alias gco='git checkout'
@@ -285,6 +286,8 @@ alias gb='git branch'
 alias gs='git status'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gai="git add -i"
+alias gg='git log'
+alias go='git show'
 
 # http://brett.benders.net/2008/07/25/zsh-wordchars/
 # At the shell prompt, I want to directories in a path to act like words, so that I can kill them one by one.
