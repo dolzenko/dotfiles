@@ -93,6 +93,7 @@ alias rc='rails console'
 alias model="rails generate model"
 alias controller="rails generate controller"
 alias migration="rails generate migration"
+alias gi='sudo gem install --no-ri --no-rdoc' # Give root and force no documentation
 
 alias -g G='|grep'
 alias -g H='|head'
