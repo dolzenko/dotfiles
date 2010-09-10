@@ -20,7 +20,7 @@ SAVEHIST=10000
 setopt INC_APPEND_HISTORY # multiple shells append to history files, new history lines are added to the $HISTFILE incrementally (as soon as they are entered), rather than waiting until the shell is killed
 setopt AUTO_CD # cd to dir by entering only dir name
 setopt EXTENDED_GLOB # If the EXTENDED_GLOB option is set, the `^' and `#' characters also denote a pattern
-setopt NO_HIST_IGNORE_DUPS # Do not enter command lines into the history list if they are duplicates of the previous event
+setopt HIST_IGNORE_DUPS # Do not enter command lines into the history list if they are duplicates of the previous event
 setopt COMPLETE_IN_WORD # If unset, the cursor is set to the end of the word if completion is started. Otherwise it stays there and completion is done from both ends.
 setopt extended_glob # dot files in globs and other
 setopt INTERACTIVE_COMMENTS # Allow comments even in interactive shells.
@@ -86,8 +86,13 @@ alias h='fc -f -l -32 -1' # last 32 commands from history with timestamps
 alias chmodrd="find . -type d -exec chmod 755 {} \;"
 alias chmodrf="find . -type f -exec chmod 644 {} \;"
 alias x='extract'
-alias r='ruby -e'
 alias i='irb'
+alias r='rake'
+alias rs='rails server'
+alias rc='rails console'
+alias model="rails generate model"
+alias controller="rails generate controller"
+alias migration="rails generate migration"
 
 alias -g G='|grep'
 alias -g H='|head'
@@ -97,6 +102,7 @@ alias -g NF='$(ls *(.om[1]))'    # newest file
 alias -g S='sudo'
 alias -g T='|tail'
 alias sudo='command sudo ' # That will cause zsh to expand your command aliases after a "sudo" command. (http://www.zsh.org/mla/users/2003/msg00411.html)
+alias fm='free -m'
 
 
 # Produces something like:
@@ -275,7 +281,7 @@ rbdev() {
     }
 }
 # http://stevehodgkiss.com/blog/2010/01/27/speed-up-your-git-workflow-with-bash-aliases/
-alias gl='git pull'
+alias gl='git pull --rebase'
 alias gp='git push'
 alias gpom='git push origin master'
 alias gd='git diff --ignore-space-change'
