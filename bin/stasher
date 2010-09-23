@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+def find_stash(tag)
+  stashes = `git stash list 2>&1`.split("\n")
+  stash = stashes.detect { |stash| stash.include?("tag:#{tag}") }
+  stash.split(":")[0]
+end
+
+cmd, tag = ARGV[0], ARGV[1]
+
+case cmd
+  when "apply"
+    stash = find_stash(tag)
+    `git stash apply #{stash}`
+    system('git status')
+  when "unapply"
+    `git stash show -p #{find_stash(tag)} | git apply -R`
+    system('git status')
+  when "save"
+    `git stash save 'tag:#{tag}'`
+  when "drop"
+    stash = find_stash(tag)
+    `git stash drop #{stash}`
+end
