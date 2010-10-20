@@ -88,12 +88,30 @@ alias chmodrf="find . -type f -exec chmod 644 {} \;"
 alias x='extract'
 alias i='irb'
 alias r='rake'
-alias rs='rails server'
-alias rc='rails console'
-alias model="rails generate model"
-alias controller="rails generate controller"
-alias migration="rails generate migration"
-alias gi='sudo gem install --no-ri --no-rdoc' # Give root and force no documentation
+#alias rs='rails server'
+#alias rc='rails console'
+# launching console/server
+# console
+function rc() {
+  if [ -x script/rails ]; then
+    script/rails console
+  elif [ -x script/console ]; then
+    script/console
+  else
+    echo "no script/rails or script/console found" >&2
+  fi
+}
+
+# server
+function rs() {
+  if [ -x script/rails ]; then
+    script/rails server
+  elif [ -x script/server ]; then
+    script/server
+  else
+    echo "no script/rails or script/server found" >&2
+  fi
+}
 
 alias -g G='|grep'
 alias -g H='|head'

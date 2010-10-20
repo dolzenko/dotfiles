@@ -2,7 +2,7 @@
 
 def find_stash(tag)
   stashes = `git stash list 2>&1`.split("\n")
-  stash = stashes.detect { |stash| stash.include?("tag:#{tag}") }
+  stash = stashes.detect { |stash| stash.include?("tag:#{tag}") } || raise("Can't find stash with tag #{tag}")
   stash.split(":")[0]
 end
 
@@ -10,8 +10,7 @@ cmd, tag = ARGV[0], ARGV[1]
 
 case cmd
   when "apply"
-    stash = find_stash(tag)
-    `git stash apply #{stash}`
+    `git stash show -p #{find_stash(tag)} | git apply`
     system('git status')
   when "unapply"
     `git stash show -p #{find_stash(tag)} | git apply -R`
@@ -21,4 +20,7 @@ case cmd
   when "drop"
     stash = find_stash(tag)
     `git stash drop #{stash}`
+  when "show"
+    stash = find_stash(tag)
+    system "git stash show #{stash} #{ARGV[2..-1].join(" ")}"
 end

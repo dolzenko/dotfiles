@@ -6,5 +6,5 @@
 - http://gems.github.com
 gem: -V --no-ri --no-rdoc
 :benchmark: false
-:update_sources: false
+:update_sources: true
 :verbose: true
