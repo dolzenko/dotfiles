@@ -91,6 +91,7 @@ alias r='rake'
 alias model="rails generate model"
 alias controller="rails generate controller"
 alias migration="rails generate migration"
+alias destroy="rails destroy"
 alias truncate_logs=": > log/*log"
 #alias rs='rails server'
 #alias rc='rails console'
