@@ -1,4 +1,5 @@
 # Always sort
 --sort-files
 --type-add=ruby=.haml,.rake,.rsel
+--ignore-dir=.idea
 
