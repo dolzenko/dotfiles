@@ -87,7 +87,8 @@ alias chmodrd="find . -type d -exec chmod 755 {} \;"
 alias chmodrf="find . -type f -exec chmod 644 {} \;"
 alias x='extract'
 alias i='irb'
-alias r='rake'
+alias r='rake --trace'
+alias s='rspec'
 alias model="rails generate model"
 alias controller="rails generate controller"
 alias migration="rails generate migration"
@@ -318,6 +319,7 @@ alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gai="git add -i"
 alias gg='git log'
 alias go='git show'
+alias grh='git reset --hard HEAD'
 
 # http://brett.benders.net/2008/07/25/zsh-wordchars/
 # At the shell prompt, I want to directories in a path to act like words, so that I can kill them one by one.
