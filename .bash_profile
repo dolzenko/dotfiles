@@ -1,2 +1,2 @@
-# Thats all I need in .bach_profile anyway
-[ x$ZSH_VERSION = x -a -f $HOME/bin/zsh ] && exec $HOME/bin/zsh -l
+if [[ -s /home/evgeniy/.rvm/scripts/rvm ]] ; then source /home/evgeniy/.rvm/scripts/rvm ; fi
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
