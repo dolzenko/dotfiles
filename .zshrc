@@ -325,5 +325,18 @@ alias grh='git reset --hard HEAD'
 # At the shell prompt, I want to directories in a path to act like words, so that I can kill them one by one.
 WORDCHARS="${WORDCHARS:s#/#}" # takes the value of WORDCHARS, removes slash, and assigns back to WORDCHARS
 
+# http://superuser.com/questions/2127/what-zsh-features-do-you-use
+# On an empty command line runs bg (so that Ctrl+Z Ctrl+Z suspends a program and immediately resumes it in the background).
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    bg
+    zle redisplay
+  else
+    zle push-input
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
+
 # Machine specific .zshrc
 [[ -f ${ZDOTDIR:-$HOME}/.machine.zshrc ]] && source ${ZDOTDIR:-$HOME}/.machine.zshrc
