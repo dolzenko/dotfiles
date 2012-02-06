@@ -338,5 +338,25 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
+# Heroku aliases from http://robots.thoughtbot.com/post/13751185765/i-learned-to-alias-shell-commands-with-hooked-on
+# Heroku beta
+alias beta='heroku run console --remote beta'
+alias beta-process='watch heroku ps --remote beta'
+alias beta-releases='heroku releases --remote beta'
+alias beta-tail='heroku logs --tail --remote beta'
+
+# Heroku production
+alias production='heroku run console --remote production'
+alias production-process='watch bundle exec heroku ps --remote production'
+alias production-releases='heroku releases --remote production'
+alias production-tail='heroku logs --tail --remote production'
+
+# Heroku databases
+alias db-pull-beta='heroku db:pull --remote beta --confirm `basename $PWD`-beta'
+alias db-pull-production='heroku db:pull --remote production --confirm `basename $PWD`-production'
+alias db-copy-production-to-beta='heroku pgbackups:restore DATABASE `heroku pgbackups:url --remote production` --remote beta  --confirm `basename $PWD`-beta'
+alias db-backup-production='heroku pgbackups:capture --remote production'
+alias db-backups='heroku pgbackups --remote production'
+
 # Machine specific .zshrc
 [[ -f ${ZDOTDIR:-$HOME}/.machine.zshrc ]] && source ${ZDOTDIR:-$HOME}/.machine.zshrc
