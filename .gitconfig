@@ -7,3 +7,8 @@
 	diff = auto
 	status = auto
 	branch = auto
+[core]
+	excludesfile = /home/evgeniy/.gitignore_global
+	editor = emacs
+[heroku]
+	account = personal

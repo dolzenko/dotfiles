@@ -7,8 +7,8 @@ fi
 export ACK_COLOR_FILENAME="red on_white"
 export ACK_COLOR_FILENAME="red on_white"
 export LESSHISTFILE=- # Name of the history file used to remember search commands and shell commands between invocations of less. If set to "-" a history file is not used.
-export EDITOR='vi'
-export VISUAL='vi'
+export EDITOR='emacs'
+export VISUAL='emacs'
 
 LC_ALL='en_US.UTF-8'
 LANG='en_US.UTF-8'
@@ -41,6 +41,12 @@ setenv() { export $1=$2 }  # csh compatibility
 autoload -U promptinit 
 promptinit
 prompt suse # should look like: root@freebsd71:/usr/local/lib/ >
+
+setopt prompt_subst
+
+PROMPT='${PWD//~} ($(~/bin/git-cwd-info)) $ '
+
+# export PS1="%n@%m:%~ $ "
 
 setopt AUTO_PUSHD # Make cd push the old directory onto the directory stack.
 export DIRSTACKSIZE=64 # The maximum size of the directory stack. If the stack gets larger than this, it will be truncated automatically.
@@ -358,5 +364,28 @@ alias db-copy-production-to-beta='heroku pgbackups:restore DATABASE `heroku pgba
 alias db-backup-production='heroku pgbackups:capture --remote production'
 alias db-backups='heroku pgbackups --remote production'
 
+_tmux_pane_words() {
+  local expl
+  local -a w
+  if [[ -z "$TMUX_PANE" ]]; then
+    _message "not running inside tmux!"
+    return 1
+  fi
+  w=( ${(u)=$(tmux capture-pane \; show-buffer \; delete-buffer)} )
+  _wanted values expl 'words from current tmux pane' compadd -a w
+}
+
+zle -C tmux-pane-words-prefix   complete-word _generic
+zle -C tmux-pane-words-anywhere complete-word _generic
+bindkey '^Xt' tmux-pane-words-prefix
+bindkey '^X^X' tmux-pane-words-anywhere
+zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' completer _tmux_pane_words
+zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' ignore-line current
+zstyle ':completion:tmux-pane-words-anywhere:*' matcher-list 'b:=* m:{A-Za-z}={a-zA-Z}'
+
 # Machine specific .zshrc
 [[ -f ${ZDOTDIR:-$HOME}/.machine.zshrc ]] && source ${ZDOTDIR:-$HOME}/.machine.zshrc
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+
