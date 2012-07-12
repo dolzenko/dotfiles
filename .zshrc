@@ -44,7 +44,7 @@ prompt suse # should look like: root@freebsd71:/usr/local/lib/ >
 
 setopt prompt_subst
 
-PROMPT='${PWD//~} ($(~/bin/git-cwd-info)) $ '
+PROMPT='${PWD//~} ($(~/bin/git-cwd-info)) %(?..[%?] )$ '
 
 # export PS1="%n@%m:%~ $ "
 
