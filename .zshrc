@@ -181,14 +181,6 @@ zstyle ':completion:history-words:*' remove-all-dups yes
 ZDOTDIR_OR_HOME=${ZDOTDIR:-$HOME}
 
 
-source ${ZDOTDIR:-$HOME}/.machine.myloc
-addloc()
-{
-	echo "$1=`pwd`\n" >> ~/.machine.myloc
-	source ~/.machine.myloc
-}
-
-
 # http://www.zsh.org/mla/users/2006/msg01148.html
 DIRSTACKSIZE=20
 if [[ -f ~/.zdirs ]] && [[ ${#dirstack[*]} -eq 0 ]]; then
@@ -382,6 +374,9 @@ bindkey '^X^X' tmux-pane-words-anywhere
 zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' completer _tmux_pane_words
 zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' ignore-line current
 zstyle ':completion:tmux-pane-words-anywhere:*' matcher-list 'b:=* m:{A-Za-z}={a-zA-Z}'
+
+# http://smlv.cc.gatech.edu/2010/07/08/small-tip-for-terminal-prevent-ctrl-s-ctrl-q/
+stty stop undef
 
 # Machine specific .zshrc
 [[ -f ${ZDOTDIR:-$HOME}/.machine.zshrc ]] && source ${ZDOTDIR:-$HOME}/.machine.zshrc
