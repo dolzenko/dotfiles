@@ -2,5 +2,5 @@
 --sort-files
 --type-add=ruby=.haml,.rake,.rsel,.less,.sass
 --ignore-dir=.idea
---ignore-case
+--smart-case
 
