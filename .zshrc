@@ -22,8 +22,9 @@ setopt AUTO_CD # cd to dir by entering only dir name
 setopt EXTENDED_GLOB # If the EXTENDED_GLOB option is set, the `^' and `#' characters also denote a pattern
 setopt HIST_IGNORE_DUPS # Do not enter command lines into the history list if they are duplicates of the previous event
 setopt COMPLETE_IN_WORD # If unset, the cursor is set to the end of the word if completion is started. Otherwise it stays there and completion is done from both ends.
-setopt extended_glob # dot files in globs and other
+setopt EXTENDED_GLOB # dot files in globs and other
 setopt INTERACTIVE_COMMENTS # Allow comments even in interactive shells.
+setopt NO_NOMATCH #  stop bailing on the command when fail to match a glob pattern (e.g. no need to escape ^ for git
 
 bindkey -e # Selects keymap `emacs'
 # bindkey -m # meta sends escape
@@ -38,7 +39,7 @@ alias mkdir='nocorrect mkdir'
 
 setenv() { export $1=$2 }  # csh compatibility
 
-autoload -U promptinit 
+autoload -U promptinit
 promptinit
 prompt suse # should look like: root@freebsd71:/usr/local/lib/ >
 
@@ -80,7 +81,7 @@ alias lss='ls -l *(s,S,t)'             # only files with setgid/setuid/sticky fl
 alias lssmall="ls -Srl *(.oL[1,10])"   # display the smallest files
 alias lsw='ls -ld *(R,W,X.^ND/)'       # world-{readable,writable,executable} files
 alias lsx='ls -l *(*[1,10])'           # only executables
-alias p='ps axu'
+alias p='ps axuwww'
 alias po='popd'
 alias pu='pushd'
 alias t='tail'
@@ -93,13 +94,19 @@ alias chmodrd="find . -type d -exec chmod 755 {} \;"
 alias chmodrf="find . -type f -exec chmod 644 {} \;"
 alias x='extract'
 alias i='irb'
-alias r='rake --trace'
+alias r=rake
 alias s='rspec'
 alias model="rails generate model"
 alias controller="rails generate controller"
 alias migration="rails generate migration"
 alias destroy="rails destroy"
 alias truncate_logs=": > log/*log"
+alias rdm='rake db:migrate'
+alias rdmt='RAILS_ENV=test rake db:migrate'
+alias be='bundle exec'
+alias bi='bundle install'
+alias bu='bundle update'
+alias ber='bundle exec rake'
 #alias rs='rails server'
 #alias rc='rails console'
 # launching console/server
@@ -149,7 +156,7 @@ zstyle ':completion:*:warnings' format "---- no match"
 zstyle ':completion:*' group-name ''
 
 
-# With predict-on in effect, the line editor will try to retrieve a line back in the history which matches what you type. 
+# With predict-on in effect, the line editor will try to retrieve a line back in the history which matches what you type.
 # If it does, it will show the line, extending past the current cursor position.
 autoload -U incremental-complete-word predict-on
 zle -N incremental-complete-word
@@ -160,11 +167,11 @@ bindkey '^Xp' predict-on
 bindkey '^X^P' predict-off
 
 
-# If verbose is true, the function generating the matches may, at its discretion, decide to show more information about them. The most common case is when describing options; 
+# If verbose is true, the function generating the matches may, at its discretion, decide to show more information about them. The most common case is when describing options;
 zstyle ':completion:*' verbose yes
 
 # If an ambiguous completion produces at least 2 possibilities, menu selection is started
-zstyle ':completion:*' menu select=2 
+zstyle ':completion:*' menu select=2
 
 # from http://dotfiles.org/~frogb/.zshrc
 zstyle ':completion:*' completer _complete _correct _approximate
@@ -191,7 +198,7 @@ chpwd() { dirs -pl >! ~/.zdirs }
 
 # http://dotfiles.org/~algorithm/.zshrc
 # Reset current directory to sensible permissions
-saneperms() 
+saneperms()
 {
 	find . -type d -print0 | xargs -0 chmod 755
 	find . -type f -print0 | xargs -0 chmod 644
@@ -263,7 +270,7 @@ alias git_dotfiles=$GIT_DOTFILES
 alias git_dotfiles_acp=git_dotfiles add -i && git_dotfiles commit -m "Minor" && git_dotfiles push
 zsh ${ZDOTDIR:-$HOME}/bin/git_dotfiles_check &
 
-export RUBYOPT="-rubygems" 
+export RUBYOPT="-rubygems"
 
 # trigger specific to my own setting behaviour in scripts and application
 export DOLZENKO=1
@@ -316,7 +323,6 @@ alias gs='git status'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gai="git add -i"
 alias gg='git log'
-alias go='git show'
 alias grh='git reset --hard HEAD'
 
 # http://brett.benders.net/2008/07/25/zsh-wordchars/
@@ -383,4 +389,23 @@ stty stop undef
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
 
+export RUBY_HEAP_MIN_SLOTS=1000000
+export RUBY_HEAP_FREE_MIN=500000
+export RUBY_FREE_MIN=500000
+export RUBY_HEAP_SLOTS_INCREMENT=1000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=100000000
+
+# export RAKEOPT=--backtrace
+
+export PERL_LOCAL_LIB_ROOT="/home/evgeniy/perl5";
+export PERL_MB_OPT="--install_base /home/evgeniy/perl5";
+export PERL_MM_OPT="INSTALL_BASE=/home/evgeniy/perl5";
+export PERL5LIB="/home/evgeniy/perl5/lib/perl5/i686-linux-gnu-thread-multi-64int:/home/evgeniy/perl5/lib/perl5";
+export PATH="/home/evgeniy/perl5/bin:$PATH";
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin

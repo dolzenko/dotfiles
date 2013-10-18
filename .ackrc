@@ -1,6 +1,5 @@
 # Always sort
 --sort-files
---type-add=ruby=.haml,.rake,.rsel,.less,.sass
---ignore-dir=.idea
+--type-add=ruby=.haml,.rake,.rsel,.less,.sass,.feature
+--ignore-dir=log
 --smart-case
-
