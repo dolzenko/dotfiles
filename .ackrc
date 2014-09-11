@@ -1,5 +1,7 @@
 # Always sort
 --sort-files
---type-add=ruby=.haml,.rake,.rsel,.less,.sass,.feature
+--type-add=ruby=.haml,.feature,.gemspec
 --ignore-dir=log
+--ignore-file=is:TAGS
 --smart-case
+--ignore-dir=Godeps

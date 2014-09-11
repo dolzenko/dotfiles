@@ -63,7 +63,6 @@ alias c='clear'
 alias cd..='cd ..'
 alias d="date '+%Y-%m-%d %H:%M'"
 alias df="df -h"
-alias du="du -h"
 alias f="find . -path '*.svn*' -prune -o -print | grep"
 alias gh='cat ~/.zsh_history | grep'
 alias j=jobs
@@ -85,6 +84,7 @@ alias p='ps axuwww'
 alias po='popd'
 alias pu='pushd'
 alias t='tail'
+alias tf='tail -f'
 alias u="tar xzfv"
 alias v='vi'
 alias zshrc='vi ~/.zshrc && source ~/.zshrc'
@@ -312,7 +312,7 @@ rbdev() {
 }
 # http://stevehodgkiss.com/blog/2010/01/27/speed-up-your-git-workflow-with-bash-aliases/
 alias gl='git pull --rebase'
-alias gp='git push'
+alias gp='git push --all'
 alias gpom='git push origin master'
 alias gd='git diff --ignore-space-change'
 alias gc='git commit'
@@ -324,6 +324,7 @@ alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gai="git add -i"
 alias gg='git log'
 alias grh='git reset --hard HEAD'
+alias tags='ripper-tags -R --format emacs -f TAGS'
 
 # http://brett.benders.net/2008/07/25/zsh-wordchars/
 # At the shell prompt, I want to directories in a path to act like words, so that I can kill them one by one.
@@ -342,18 +343,10 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-# Heroku aliases from http://robots.thoughtbot.com/post/13751185765/i-learned-to-alias-shell-commands-with-hooked-on
 # Heroku beta
-alias beta='heroku run console --remote beta'
-alias beta-process='watch heroku ps --remote beta'
-alias beta-releases='heroku releases --remote beta'
-alias beta-tail='heroku logs --tail --remote beta'
-
+alias beta='heroku run rails console -r beta'
 # Heroku production
-alias production='heroku run console --remote production'
-alias production-process='watch bundle exec heroku ps --remote production'
-alias production-releases='heroku releases --remote production'
-alias production-tail='heroku logs --tail --remote production'
+alias production='heroku run rails console -r production'
 
 # Heroku databases
 alias db-pull-beta='heroku db:pull --remote beta --confirm `basename $PWD`-beta'
@@ -384,17 +377,13 @@ zstyle ':completion:tmux-pane-words-anywhere:*' matcher-list 'b:=* m:{A-Za-z}={a
 # http://smlv.cc.gatech.edu/2010/07/08/small-tip-for-terminal-prevent-ctrl-s-ctrl-q/
 stty stop undef
 
-# Machine specific .zshrc
-[[ -f ${ZDOTDIR:-$HOME}/.machine.zshrc ]] && source ${ZDOTDIR:-$HOME}/.machine.zshrc
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-export RUBY_HEAP_MIN_SLOTS=1000000
+export RUBY_GC_HEAP_INIT_SLOTS=1000000
 export RUBY_HEAP_FREE_MIN=500000
-export RUBY_FREE_MIN=500000
+export RUBY_GC_HEAP_FREE_SLOTS=500000
 export RUBY_HEAP_SLOTS_INCREMENT=1000000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=100000000
@@ -407,5 +396,8 @@ export PERL_MM_OPT="INSTALL_BASE=/home/evgeniy/perl5";
 export PERL5LIB="/home/evgeniy/perl5/lib/perl5/i686-linux-gnu-thread-multi-64int:/home/evgeniy/perl5/lib/perl5";
 export PATH="/home/evgeniy/perl5/bin:$PATH";
 
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+source $HOME/.gvm/scripts/gvm
+
+[[ -f ${ZDOTDIR:-$HOME}/.machine.zshrc ]] && source ${ZDOTDIR:-$HOME}/.machine.zshrc
+
+export HISTFILE=~/.zsh_history
